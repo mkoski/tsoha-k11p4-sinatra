@@ -3,3 +3,7 @@
 <p><%= @esimerkkimuuttuja %></p>
 
 <p>Sessioon tallennettuna "<%= @sessiosta_muuttujaan %>"</p>
+
+<% @testmodelin_arvot.each do |arvo| %>
+    <p><%= arvo.name %></p>
+<% end %>

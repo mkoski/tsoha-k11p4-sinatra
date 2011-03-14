@@ -2,6 +2,10 @@ require 'rubygems'
 require 'sinatra'
 require 'erb'
 
+require 'config/init'
+
+require 'models/user'
+
 class Tsoha < Sinatra::Base
 
   enable :sessions
@@ -10,6 +14,7 @@ class Tsoha < Sinatra::Base
   get '/' do
     @esimerkkimuuttuja = "tämä on muuttuja"
     @sessiosta_muuttujaan = session[:muuttuja]
+    @testmodelin_arvot = User.all
     erb :index
   end
 
