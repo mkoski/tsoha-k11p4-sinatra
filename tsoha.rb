@@ -17,7 +17,12 @@ class Tsoha < Sinatra::Base
     @testmodelin_arvot = User.all
     erb :index
   end
-
+  get '/add' do
+    erb :add
+  end
+  get '/login' do
+    erb :login
+  end
   get '/sessioon/:arvo' do
     session[:muuttuja] = params[:arvo]
     redirect '/'
