@@ -18,7 +18,7 @@ create table CompactDisc (
 	record_company integer,
 	genre varchar,
 	picture varchar,
-	foreign key(Artist) references Artist,
-	foreign key(RecordCompany) references RecordCompany,
-	foreign key(Genre) references Genre
+	foreign key(artist) references Artist,
+	foreign key(record_company) references RecordCompany,
+	foreign key(genre) references Genre
 	);
