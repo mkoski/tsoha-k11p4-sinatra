@@ -13,6 +13,7 @@ create table RecordCompany (
 	);
 create table CompactDisc (
 	id integer primary key,
+        title varchar,
 	artist varchar,
 	released integer,
 	record_company integer,
