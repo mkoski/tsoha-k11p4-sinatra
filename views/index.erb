@@ -1,27 +1,49 @@
-<input name="login" type="button" value="Login" onclick="window.location.href='/login'" />
+<h2><%= $h2_header %></h2>
 
-<h2>Search</h2>
-
+<br>
+<p align="right"><input type="button" value="Login" onclick="window.location.href='/login'" /></p>
+<h3>search</h3>
 <form name="search" method="post" action="/search" accept-charset="utf-8">
-
-  <P>Artist: <INPUT name="artist" type="text"></P>
-  <P>Title: <INPUT name="title" type="text"></P>
-  <P>Released: <select name="released">
+  <table>
+  <tr>
+    <td>title</td>
+    <td><INPUT name="title" type="text"></td>
+  </tr>
+  <tr>
+    <td>artist</td>
+    <td><INPUT name="artist" type="text"></td>
+  </tr>
+  <tr>
+    <td>released</td>
+    <td>
+      <select name="released">
       <option value="2008">2008</option>
       <option value="2009">2009</option>
       <option value="2010">2010</option>
       <option value="2011">2011</option>
     </select>
-  </P>
-  <P>Record Company: <INPUT name="company" type="text"></P>
-  <P>Music genre: <INPUT name="genre" type="text"></P>
-  <input name="submit" type="submit" value="Search" />
 
+    </td>
+  </tr>
+  <tr>
+    <td>record company</td>
+    <td><INPUT name="company" type="text"></td>
+  </tr>
+  <tr>
+    <td>genre</td>
+    <td><INPUT name="genre" type="text"></td>
+  </tr>
+</table>
+
+  <input name="submit" type="submit" value="Search" />
 </form>
+
+
+
 
 <form name="list" action="list" method="post">
   <input name="list" type="submit" value="List all" />
 </form>
 
 
-<p><a href ="add" >Add new CD</a></p>
+<p><a href ="add" >add new cd</a></p>

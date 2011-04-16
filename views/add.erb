@@ -1,16 +1,43 @@
-<h2>Add CD:</h2>
+<h2><%= $h2_header %></h2>
+
+<br>
+<p align="right"><input name="login" type="button" value="Login" onclick="window.location.href='/login'" /></p>
+<h3>add cd</h3>
 
 <form  method="post" action="/add/addcd" accept-charset="utf-8">
 
-  <P>Title: <INPUT name="title" type="text"></P>
-  <P>Artist: <INPUT name="artist" type="text"></P>  
-  <P>Released: <INPUT name="released" type="text"></P>
-  <P>Record Company: <INPUT name="record_company" type="text"></P>
-  <P>Genre: <INPUT name="genre" type="text"></P>
-  <P>Picture(url): <INPUT name="picture" type="text"></P>
+  
+  
+
+<table>
+  <tr>
+    <td>title</td>
+    <td><INPUT name="title" type="text"></td>
+  </tr>
+  <tr>
+    <td>artist</td>
+    <td><INPUT name="artist" type="text"></td>
+  </tr>
+  <tr>
+    <td>released</td>
+    <td><INPUT name="released" type="text"></td>
+  </tr>
+  <tr>
+    <td>record company</td>
+    <td><INPUT name="record_company" type="text"></td>
+  </tr>
+  <tr>
+    <td>genre</td>
+    <td><INPUT name="genre" type="text"></td>
+  </tr>
+  <tr>
+    <td>picture(url)</td>
+    <td><INPUT name="picture" type="text"></td>
+  </tr>
+</table>
   <p><input type="submit" value="Add CD!" /></p>
 
 </form>
 
-<p><a href ="/" >Back</a></p>
+<p><a href ="/" >back</a></p>
 

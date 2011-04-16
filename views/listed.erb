@@ -1,7 +1,38 @@
+<h2><%= $h2_header %></h2>
 
 
-<h2>Results</h2>
+<p align="right"><input name="login" type="button" value="Login" onclick="window.location.href='/login'" /></p>
 
-<p><%= @testi %></p>
-<p><%= @testi2 %></p>
-<p><a href ="/" >Back</a></p>
+<h3>results</h3>
+
+<% @compact_discs.each do |cd| %>
+   <table>
+   <% if !cd.picture.empty? %>
+      <tr>
+        <td><img src="<%= cd.picture%>" width="100" height="100" /></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td>title:<br> </td>
+      <td><%= cd.title %></td>
+    </tr>
+    <tr>
+     <td>artist: <br></td>
+     <td><%= cd.artist %></td>
+    </tr>
+    <tr>
+      <td>released: </td>
+      <td><%= cd.released %></td>
+    </tr>
+    <tr>
+      <td>record company: </td>
+      <td><%= cd.record_company %></td>
+    </tr>
+    <tr>
+      <td>genre: <td>
+      <td><%= cd.genre %></td>
+    </tr>
+    <br><hr><br>
+</table>
+<% end %>
+<p><a href ="/" >back</a></p>
