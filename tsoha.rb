@@ -6,7 +6,7 @@ require 'config/init'
 require 'models/user'
 require 'models/tables'
 
-DataMapper.setup(:default, "sqlite3:tsoha.db")
+#DataMapper.setup(:default, "sqlite3:tsoha.db")
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
