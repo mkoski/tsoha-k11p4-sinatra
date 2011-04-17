@@ -41,7 +41,7 @@ class CompactDisc
   property :released, Integer, :required => true
   property :record_company, String, :required => true
   property :genre, String
-  property :picture, Text
+  property :picture, Text, :length => 500
 #  belongs_to :Artist
 end
 
