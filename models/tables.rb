@@ -38,7 +38,7 @@ class CompactDisc
   property :id, Serial
   property :title, String, :required => true
   property :artist, String, :required => true
-  property :released, String, :required => true
+  property :released, Integer, :required => true
   property :record_company, String, :required => true
   property :genre, String
   property :picture, String

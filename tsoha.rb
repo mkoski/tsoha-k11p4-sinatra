@@ -16,7 +16,7 @@ class Tsoha < Sinatra::Base
   enable :sessions
   set :public, File.dirname(__FILE__) + "/public"
 
-  $h2_header = "C D _ A R C H I V E <br><hr>"
+  $h2_header = "C D _ A R C H I V E<br><hr>"
   
   get '/' do
 #    @esimerkkimuuttuja = "tämä on muuttuja"
