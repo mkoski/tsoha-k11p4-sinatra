@@ -1,9 +1,26 @@
-<h2><%= $h2_header %></h2>
-
-
-<p align="right"><input name="login" type="button" value="Login" onclick="window.location.href='/login'" /></p>
-<h3>search results</h3>
-<p><%= @results %></p>
-
-<p><a href ="/" >Back</a></p>
+<form name="search" method="post" action="/search" accept-charset="utf-8">
+  <table>
+    <tr>
+      <td>
+      <h3>search:</h3>
+      </td>
+    </tr>
+    <tr>
+      <td>by title</td>
+      <td><INPUT name="title" type="text"></td>
+    </tr>
+    <tr>
+      <td>by artist</td>
+      <td><INPUT name="artist" type="text"></td>
+    </tr>
+  </table>
+  <br>
+  <table>  
+    <tr>
+      <td>
+        <input name="search" type="submit" value="submit" />
+      </td>
+    </tr>
+  </table>
+</form>
 

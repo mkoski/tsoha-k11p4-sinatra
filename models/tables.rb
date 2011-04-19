@@ -1,12 +1,8 @@
 require 'rubygems'
 require 'dm-core'
 require 'dm-migrations'
+require 'dm-validations'
 
-class User
-  include DataMapper::Resource
-  property :id, Serial
-  property :name, String, :required => true
-end
 
 
 class Artist
@@ -14,10 +10,8 @@ class Artist
   property :id, Serial
   property :name, String, :required => true
   property :bio, Text
-#  belongs_to :recordcompany
-#  has n :compactdiscs
+  #has n :compactdiscs
 end
-
 
 class Genre
   include DataMapper::Resource
@@ -33,15 +27,5 @@ class RecordCompany
 #  has n :artists
 end
 
-class CompactDisc
-  include DataMapper::Resource
-  property :id, Serial
-  property :title, String, :required => true
-  property :artist, String, :required => true
-  property :released, Integer, :required => true
-  property :record_company, String, :required => true
-  property :genre, String
-  property :picture, Text, :length => 500
-#  belongs_to :Artist
-end
 
+#DataMapper.auto_upgrade!

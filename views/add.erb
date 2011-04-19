@@ -1,11 +1,10 @@
-<h2><%= $h2_header %></h2>
-
-<br>
-<p align="right"><input name="login" type="button" value="Login" onclick="window.location.href='/login'" /></p>
-<h3>add cd</h3>
-
-<form  method="post" action="/add/addcd" accept-charset="utf-8">
+<form  method="post" action="/add" accept-charset="utf-8">
 <table>
+  <tr>
+    <td>
+      <h3>add:</h3>
+    </td>
+  </tr>
   <tr>
     <td>title</td>
     <td><INPUT name="title" type="text"></td>
@@ -33,6 +32,4 @@
 </table>
   <p><input type="submit" value="Add CD!" /></p>
 </form>
-
-<p><a href ="/" >back</a></p>
 

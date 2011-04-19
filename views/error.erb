@@ -1,5 +1,6 @@
-<h2><%= $h2_header %></h2>
+<%= $h2_header %>
+<% @err_messages.each do |e| %>
+  <p><%=  e %></p>
+  <% end %>
 
-<p>error</p>
-<p><a href ="/" >Back</a></p>
 

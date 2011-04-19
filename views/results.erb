@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <td>
+      <h3>results:</h3>
+    </td>
+  </tr>
+</table>
+<% @search_results.each do |cd| %>
+   <table>
+   <% if !cd.picture.empty? %>
+      <tr>
+        <td><img src="<%= cd.picture%>" width="90" height="90" /></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><%= cd.title %></td>
+    </tr>
+    <tr>
+     <td><%= cd.artist %></td>
+    </tr>
+    <tr>
+      <td><%= cd.released %></td>
+    </tr>
+    <tr>
+      <td><%= cd.record_company %></td>
+    </tr>
+    <tr>
+      <td><%= cd.genre %></td>
+    </tr>
+    <br><hr><br>
+</table>
+<% end %>

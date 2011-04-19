@@ -5,23 +5,40 @@ require 'erb'
 require 'config/init'
 require 'models/user'
 require 'models/tables'
-
-DataMapper.finalize
-DataMapper.auto_migrate!
+require 'models/CompactDisc'
 
 class Tsoha < Sinatra::Base
-
+  enable :sessions
   set :public, File.dirname(__FILE__) + "/public"
-  $h2_header = "C D _ A R C H I V E<br><hr>"
 
 # Navigations
 
   get '/' do
+    if session['id'] == nil
+    redirect :login
+    else     
+      @user = User.get(session['id'])
+      @logged_in = @user.username
+      @login_msg ="You are logged in as #{@logged_in}!"
+    end   
     erb :index
   end
 
+  get '/login' do
+    erb :login
+  end
+
+  get '/search' do
+    erb :search
+  end
+
   get '/add' do
-    erb :add
+    if session['id'] == nil
+      @login_msg = "You must be logged in to do that."
+      erb :login
+    else
+      erb :add
+    end
   end
 
   get '/error' do
@@ -32,29 +49,56 @@ class Tsoha < Sinatra::Base
     erb :added
   end
 
-  get '/login' do
-    erb :login
+  get '/register' do
+    erb :register
   end
 
-# Actions
+  # Actions
 
-  post '/list' do
-    @compact_discs = CompactDisc.all
-    erb :listed
+  post '/login' do
+    @user = User.first(:username => params[:username], :password => params[:password])
+    if @user != nil
+      session['id'] = @user.id    
+      redirect '/'
+    else
+      @login_msg = "Invalid username or password"
+      erb :login
+    end   
   end
 
-  post '/add/addcd' do
+  post '/logout' do
+    session['id'] = nil
+    @login_msg = "You logged out."
+    redirect '/login'
+  end
+
+  post '/register' do
+      if params[:username] and params[:password]        
+          @user = User.create(:username => params[:username], :password => params[:password])
+          @login_msg = "Registration ok!"
+          erb :login
+      else
+        @err_messages = "Check username/password."
+        erb :error
+      end
+  end
+
+  post '/add' do
     compactdisc = CompactDisc.new(params)
     if compactdisc.save
       redirect '/added'
     else
+        @err_messages = compactdisc.errors
       erb :error
     end
   end
 
   post '/search' do
-    @results = CompactDisc.get(params)
-    erb :search
+    @search_results =CompactDisc.search( params[:title],params[:artist])
+    if  @search_results == nil
+      @search_results = CompactDisc.all
+    end
+    erb :results
   end
 
 end
