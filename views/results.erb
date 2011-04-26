@@ -5,6 +5,7 @@
     </td>
   </tr>
 </table>
+
 <% @search_results.each do |cd| %>
    <table>
    <% if !cd.picture.empty? %>
@@ -16,7 +17,10 @@
       <td><%= cd.title %></td>
     </tr>
     <tr>
-     <td><%= cd.artist %></td>
+     <td>
+       <% @artist = cd.artist %>
+       <a href="/bio/<%= @artist  %>"><%= cd.artist %></a>
+     </td>
     </tr>
     <tr>
       <td><%= cd.released %></td>
@@ -26,6 +30,13 @@
     </tr>
     <tr>
       <td><%= cd.genre %></td>
+    </tr>
+    <tr>
+      <td>
+        <form name="destroy" method="post" action="/delete/<%= cd.id %>">
+          <input name="delete" type="submit" value="delete" />
+        </form>
+      </td>
     </tr>
     <br><hr><br>
 </table>

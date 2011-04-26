@@ -3,19 +3,19 @@ require 'sinatra'
 require 'erb'
 
 require 'config/init'
-require 'models/user'
-require 'models/tables'
+require 'models/User'
 require 'models/CompactDisc'
+require 'models/Artist'
 
 class Tsoha < Sinatra::Base
   enable :sessions
   set :public, File.dirname(__FILE__) + "/public"
 
-# Navigations
+  # Navigations
 
   get '/' do
     if session['id'] == nil
-    redirect :login
+      redirect :login
     else     
       @user = User.get(session['id'])
       @logged_in = @user.username
@@ -53,7 +53,23 @@ class Tsoha < Sinatra::Base
     erb :register
   end
 
-  # Actions
+  get '/bio/:artist' do
+    @artist = params[:artist]
+    @artist = Artist.all(:name => @artist)
+    @artist.each do |a|
+      @bio = a.bio
+    end
+    erb :bio
+  end
+
+   # Actions
+
+  post '/delete/:cd' do
+    @cd = CompactDisc.get(params[:cd])
+    @cd.destroy
+    @login_msg = "Cd deleted."
+    erb:search
+  end
 
   post '/login' do
     @user = User.first(:username => params[:username], :password => params[:password])
@@ -73,31 +89,44 @@ class Tsoha < Sinatra::Base
   end
 
   post '/register' do
-      if params[:username] and params[:password]        
-          @user = User.create(:username => params[:username], :password => params[:password])
-          @login_msg = "Registration ok!"
-          erb :login
+    if params[:username] and params[:password]
+      @user = User.new
+      @user.username = params[:username]
+      @user.password = params[:password]
+      if @user.save
+        @login_msg = "Registration ok!"
+        erb :login
       else
-        @err_messages = "Check username/password."
+        @err_messages = @user.errors
         erb :error
       end
+    end
   end
 
   post '/add' do
-    compactdisc = CompactDisc.new(params)
-    if compactdisc.save
+    unless Artist.first(:name => params[:artist])
+      @artist = Artist.new
+      @artist.name = params[:artist]
+      @artist.bio = params[:bio]
+      @artist.save
+    end       
+    @compactdisc = CompactDisc.new
+    @compactdisc.title = params[:title]
+    @compactdisc.artist = params[:artist]
+    @compactdisc.released = params[:released]
+    @compactdisc.record_company = params[:record_company]
+    @compactdisc.genre = params[:genre]
+    @compactdisc.picture = params[:picture]  
+    if @compactdisc.save
       redirect '/added'
     else
-        @err_messages = compactdisc.errors
+      @err_messages = @compactdisc.errors
       erb :error
     end
   end
 
   post '/search' do
-    @search_results =CompactDisc.search( params[:title],params[:artist])
-    if  @search_results == nil
-      @search_results = CompactDisc.all
-    end
+    @search_results = CompactDisc.search(params[:title],params[:artist],params[:released],params[:genre])    
     erb :results
   end
 

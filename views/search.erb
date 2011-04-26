@@ -1,3 +1,10 @@
+<table>
+  <tr>
+    <td>
+      <p><%= @login_msg %></p>
+    </td>
+  </tr>
+</table>
 <form name="search" method="post" action="/search" accept-charset="utf-8">
   <table>
     <tr>
@@ -12,6 +19,14 @@
     <tr>
       <td>by artist</td>
       <td><INPUT name="artist" type="text"></td>
+    </tr>
+    <tr>
+      <td>by year</td>
+      <td><INPUT name="released" type="text"></td>
+    </tr>
+    <tr>
+      <td>by genre</td>
+      <td><INPUT name="genre" type="text"></td>
     </tr>
   </table>
   <br>

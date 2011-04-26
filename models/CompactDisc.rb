@@ -12,27 +12,24 @@ class CompactDisc
   property :record_company, String
   property :genre, String
   property :picture, Text, :length => 500
-  #belongs_to :Artist
 
-  def self.search(t, a)
-
-    @title_s = t
-    @artist_s = a
-    if @title_s == "" && @artist_s == ""
-      @search_results = self.all
+  def self.search(title, artist, released, genre) 
+    search_results = self.all
+    if title != ""
+      search_results = search_results.all(:title => title )
     end
-    if @title_s != "" and @artist_s != ""
-      @search_results = self.all(:conditions => { :title => @title_s, :artist => @artist_s })
+    if artist != ""
+      search_results = search_results.all(:artist => artist)
     end
-    if @title_s == "" and @artist_s != ""
-      @search_results = self.all(:conditions => {:artist => @artist_s })
-    else
-      if @title_s != ""  and @artist_s == ""
-          @search_results = self.all(:conditions => { :title => @title_s})
-      end
+    if released != ""
+      search_results = search_results.all(:released => released)
     end
+    if genre != ""
+      search_results = search_results.all(:genre => genre)
+    end
+    return search_results
   end
 end
 
 DataMapper.finalize
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
