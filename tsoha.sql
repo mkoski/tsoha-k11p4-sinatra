@@ -1,25 +1,22 @@
-create table Artist (
-	id integer primary key,
-	name varchar,
-	bio varchar
-	);
-create table Genre (
-	genre_name varchar primary key,
-	description varchar
-	);
-create table RecordCompany (
-	id integer primary key,
-	name varchar
-	);
-create table CompactDisc (
-	id integer primary key,
-        title varchar,
-	artist varchar,
-	released integer,
-	record_company integer,
-	genre varchar,
-	picture varchar,
-	foreign key(artist) references Artist,
-	foreign key(record_company) references RecordCompany,
-	foreign key(genre) references Genre
-	);
+CREATE TABLE "users" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "username" VARCHAR(255) NOT NULL,
+    "password" VARCHAR(255) NOT NULL
+    )
+CREATE UNIQUE INDEX "unique_users_username" ON "users" (
+    "username"
+    )
+CREATE TABLE "compact_discs" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "title" VARCHAR(255) NOT NULL,
+    "artist" VARCHAR(255) NOT NULL,
+    "released" INTEGER,
+    "record_company" VARCHAR(255),
+    "genre" VARCHAR(255),
+    "picture" TEXT
+    )
+CREATE TABLE "artists" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" VARCHAR(255) NOT NULL,
+    "bio" TEXT
+    )

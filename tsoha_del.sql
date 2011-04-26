@@ -1,4 +1,3 @@
-drop table Artist;
-drop table Genre;
-drop table RecordCompany;
-drop table CompactDisc;
+DROP TABLE artists;
+DROP TABLE compact_discs;
+DROP TABLE users;
